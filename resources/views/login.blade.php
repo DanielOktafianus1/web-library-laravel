@@ -33,21 +33,29 @@
                     @endif
                     <form action="{{ route('loginAction') }}" method="POST">
                         @csrf
+
+                        {{-- Email --}}
+                        <i class="text-danger" id="errorEmail"></i>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" placeholder="Username"
-                                name="email" value="{{ old('email') }}">
+                            <input type="email" class="form-control form-control-xl" placeholder="Email"
+                                name="email" value="{{ old('email') }}" required id="inputEmail">
+
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
+
+                        {{-- Password --}}
+                        <i class="text-danger" id="errorPassword"></i>
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="password" class="form-control form-control-xl" placeholder="Password"
-                                name="password">
+                                name="password" required id="inputPassword">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5"
+                            id="btnLogin">Log in</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">Don't have an account? <a href="auth-register.html"
@@ -65,6 +73,64 @@
         </div>
 
     </div>
+
+    <script>
+        document.getElementById('inputEmail').addEventListener('input', emailValidation)
+        document.getElementById('inputPassword').addEventListener('input', passwordValidation)
+
+        // Email validation
+        function emailValidation() {
+
+            let isValid = true;
+
+            const email = document.getElementById('inputEmail').value;
+            const errorEmail = document.getElementById('errorEmail');
+            errorEmail.textContent = '';
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (!email) {
+                errorEmail.textContent = 'Email must be filled in!';
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                errorEmail.textContent = 'Invalid email!';
+                isValid = false;
+            }
+
+            const btnSubmit = document.getElementById('btnLogin');
+
+            if (isValid == true) {
+                btnSubmit.disabled = false;
+            } else {
+                btnSubmit.disabled = true;
+            }
+        }
+
+        // Password validation
+        function passwordValidation() {
+
+            let isValid = true;
+
+            const password = document.getElementById('inputPassword').value;
+            const errorPassword = document.getElementById('errorPassword');
+            errorPassword.textContent = '';
+
+            if (!password) {
+                errorPassword.textContent = 'Password must be filled in!';
+                isValid = false;
+            } else if (password.length < 8) {
+                errorPassword.textContent = 'The password must have a minimum of 7 characters!';
+                isValid = false;
+
+                const btnSubmit = document.getElementById('btnLogin');
+
+                if (isValid == true) {
+                    btnSubmit.disabled = false;
+                } else {
+                    btnSubmit.disabled = true;
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -22,21 +22,27 @@
         </div>
 
         <div class="col-12 col-lg-6 col-md-6">
-            <div class="card">
-                <div class="card-body px-3 py-4-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="stats-icon blue">
-                                <i class="bi bi-person-fill"></i>
+            <a href="{{ route('re75ekfdj8e5tgjgu7g.index') }}">
+                <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="stats-icon blue">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h6 class="text-muted font-semibold">Users</h6>
-                            <h6 class="font-extrabold mb-0">183.000</h6>
+                            <div class="col-md-8">
+                                @if (isset($user) && count($user) > 2)
+                                    <h6 class="text-muted font-semibold">User</h6>
+                                @else
+                                    <h6 class="text-muted font-semibold">User</h6>
+                                @endif
+                                <h6 class="font-extrabold mb-0">{{ count($user) }}</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="col-12 col-lg-6 col-md-6">

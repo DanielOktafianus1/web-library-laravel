@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +36,7 @@ class AccessConteoller extends Controller
 
     public function dashboardPage()
     {
-        return view('admin.dashboard');
+        $user = User::get();
+        return view('admin.dashboard', compact('user'));
     }
 }

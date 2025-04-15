@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccessConteoller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,3 +19,6 @@ Route::get('dhszfwu477teu3er9wf9vv', [AccessConteoller::class, "basePage"])->nam
 
 // Dashboard view
 Route::get('dsjfsgfu3ew8csjfbae7ds', [AccessConteoller::class, "dashboardPage"])->name('dashboardPage');
+
+// CRUD User
+Route::resource('re75ekfdj8e5tgjgu7g', UserController::class);

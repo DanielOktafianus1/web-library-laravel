@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Daniel Oktafianus',
             'email' => 'danieloktafianus@gmail.com',
             'password' => Hash::make('danieloktafianus'),
+            'gender' => 1,
+            'level' => 3,
         ]);
     }
 }

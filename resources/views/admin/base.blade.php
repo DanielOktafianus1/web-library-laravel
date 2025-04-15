@@ -206,8 +206,21 @@
                             <div class="card-body py-4 px-5">
                                 <div class="">
                                     <div class="avatar avatar-xl d-flex justify-center align-items-center mb-2">
-                                        <img src="{{ asset('tamplete/dist/assets/images/faces/1.jpg') }}"
-                                            alt="Face 1" class=" m-auto">
+                                        @if (Auth::user()->media == null)
+                                            @if (Auth::user()->gender == 1)
+                                                <img src="{{ asset('staticImg/male.png') }}" alt=""
+                                                    class="m-auto">
+                                            @elseif (Auth::user()->gender == 2)
+                                                <img src="{{ asset('staticImg/female.jpeg') }}" alt=""
+                                                    class="m-auto">
+                                            @else
+                                                <img src="{{ asset('tamplete/dist/assets/images/faces/1.jpg') }}"
+                                                    alt="Face 1" class=" m-auto">
+                                            @endif
+                                        @else
+                                            <img src="{{ asset('tamplete/dist/assets/images/faces/1.jpg') }}"
+                                                alt="Face 1" class=" m-auto">
+                                        @endif
                                     </div>
                                     <div class=" name">
                                         <h6 class="font-bold text-center">{{ Auth::user()->name }}</h6>
